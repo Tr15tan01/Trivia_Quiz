@@ -11,3 +11,11 @@ ul {
 	background-color: forestgreen;
 	padding: 23px 43px;
 }
+
+.answer:hover {
+	cursor: pointer;
+}
+
+.active {
+	background-color: magenta;
+}
