@@ -1,4 +1,4 @@
-const api = fetch('https://opentdb.com/api.php?amount=3&category=28&type=multiple')
+fetch('https://opentdb.com/api.php?amount=3&category=28&type=multiple')
     .then(response => response.json())
     .then(data => {
         //quesion number
@@ -10,8 +10,12 @@ const api = fetch('https://opentdb.com/api.php?amount=3&category=28&type=multipl
             loadQuestion()
         }
 
-
-
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
 
         const loadQuestion = () => {
             //question assign to element
@@ -19,7 +23,9 @@ const api = fetch('https://opentdb.com/api.php?amount=3&category=28&type=multipl
             question.innerHTML = data.results[i].question
             const incorrect_answers = data.results[i].incorrect_answers;
             const correct_answer = data.results[i].correct_answer;
-            const answers = incorrect_answers.concat(correct_answer)
+            // const answers = incorrect_answers.concat(correct_answer)
+            const answers = [correct_answer, ...incorrect_answers]
+            shuffleArray(answers)
             // console.log('answers', answers)
 
             const answersContainer = document.getElementById('answers')
