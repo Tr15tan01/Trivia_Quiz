@@ -1,0 +1,13 @@
+body {
+	background-color: dodgerblue;
+	color: white;
+}
+
+ul {
+	list-style: none;
+}
+
+.answer {
+	background-color: forestgreen;
+	padding: 23px 43px;
+}
