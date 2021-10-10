@@ -1,6 +1,63 @@
+:root {
+	--border-min: 6px;
+	--shadow-min: 6px 6px 12px rgba(0, 0, 0, .6);
+}
+
 body {
 	background-color: dodgerblue;
 	color: white;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+.container {
+	color: white;
+}
+
+.startQuiz,
+.finished {
+	width: 100%;
+	height: 96vh;
+	background-color: yellowgreen;
+	z-index: 3;
+	position: absolute;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#starter {
+	margin: 0 auto;
+	position: relative;
+	top: 50%;
+	width: 60%;
+	background: red;
+	color: white;
+	padding: 24px 36px;
+	text-decoration: none;
+	border: 0px;
+	cursor: pointer;
+	transition: all 0.3s 0s ease-in-out;
+	border-radius: var(--border-min);
+}
+
+#starter:hover {
+	background: chartreuse;
+	cursor: pointer;
+}
+
+#finished {
+	display: none;
+	z-index: 4;
+	background: blueviolet;
+	color: white;
+}
+
+#question {
+	padding: 24px;
+	margin: auto;
+	width: 100%;
+	height: 90px;
 }
 
 ul {
@@ -10,12 +67,50 @@ ul {
 .answer {
 	background-color: forestgreen;
 	padding: 23px 43px;
+	margin: 0 24px;
+	transition: .3s linear;
+	border-radius: var(--border-min);
+	box-shadow: var(--shadow-min);
 }
 
 .answer:hover {
 	cursor: pointer;
+	opacity: .9;
 }
 
-.active {
-	background-color: magenta;
+.correct {
+	background-color: green;
+}
+
+.incorrect {
+	background-color: red;
+}
+
+.noHover {
+	pointer-events: none;
+}
+
+#nextButton {
+	font-size: 16px;
+	letter-spacing: 2px;
+	background-color: blueviolet;
+	color: #fff;
+	width: 100%;
+	padding: 24px 50px;
+	margin: 24px auto;
+	text-align: center;
+	text-decoration: none;
+	border: 0px;
+	cursor: pointer;
+	transition: all 0.3s 0s ease-in-out;
+}
+
+#nextButton:hover {
+	background-color: violet;
+	text-decoration: none;
+}
+
+.finished {
+	background-color: rosybrown;
+	color: white;
 }
