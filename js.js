@@ -4,6 +4,8 @@ fetch('https://opentdb.com/api.php?amount=3&category=28&difficulty=easy&type=mul
         //quesion number
         let i = 0;
         let score = 0;
+        let selected = false;
+        const nextButton = document.getElementById('nextButton')
 
         //score display
         const scoreDisplay = document.getElementById('score')
@@ -26,7 +28,7 @@ fetch('https://opentdb.com/api.php?amount=3&category=28&difficulty=easy&type=mul
             const answers = [correct_answer, ...incorrect_answers]
             shuffleArray(answers)
             // console.log('answers', answers)
-
+            nextButton.disabled = true;
             const answersContainer = document.getElementById('answers')
             answersContainer.innerHTML = answers.map(answer => `<div class = 'answer'>${answer}</div>`).join("<br>")
 
@@ -34,6 +36,7 @@ fetch('https://opentdb.com/api.php?amount=3&category=28&difficulty=easy&type=mul
 
                 const checkAnswer = (e) => {
                     console.log(e.target.textContent)
+                    nextButton.disabled = false;
                     if (e.target.textContent == correct_answer) {
                         console.log('tadaa')
                         e.target.classList.toggle('correct')
@@ -74,9 +77,10 @@ fetch('https://opentdb.com/api.php?amount=3&category=28&difficulty=easy&type=mul
             if (i < 2) {
                 console.log('with if i is ', i)
                 i = i + 1
-                console.log('i is', i)
+                console.log(selected)
                 loadQuestion()
-            } else {
+            }
+            else {
                 console.log('finish')
                 const containerDiv = document.getElementsByClassName('container')[0]
                 const finishedDiv = document.getElementById('finished')
@@ -88,7 +92,7 @@ fetch('https://opentdb.com/api.php?amount=3&category=28&difficulty=easy&type=mul
 
         }
 
-        const nextButton = document.getElementById('nextButton')
+
         nextButton.addEventListener('click', nextQuestion)
     })
 
