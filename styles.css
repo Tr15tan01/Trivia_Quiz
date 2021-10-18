@@ -90,7 +90,8 @@ ul {
 	pointer-events: none;
 }
 
-#nextButton {
+#nextButton,
+#nextLevelButton {
 	font-size: 16px;
 	letter-spacing: 2px;
 	background-color: blueviolet;
