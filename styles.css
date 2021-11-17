@@ -4,22 +4,22 @@
 }
 
 body {
-	background-color: dodgerblue;
-	color: white;
+	background-color: whitesomoke;
+	color: black;
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
 }
 
 .container {
-	color: white;
+	color: gray;
 }
 
 .startQuiz,
 .finished {
 	width: 100%;
 	height: 96vh;
-	background-color: yellowgreen;
+	background-color: whitesmoke;
 	z-index: 3;
 	position: absolute;
 	margin: 0 auto;
@@ -31,7 +31,7 @@ body {
 	position: relative;
 	top: 50%;
 	width: 60%;
-	background: red;
+	background-color: rgb(19, 182, 81);
 	color: white;
 	padding: 24px 36px;
 	text-decoration: none;
@@ -49,15 +49,27 @@ body {
 #finished {
 	display: none;
 	z-index: 4;
-	background: blueviolet;
-	color: white;
+	background: whitesmoke;
+	color: dodgerblue;
 }
 
 #question {
 	padding: 24px;
-	margin: auto;
+	margin: 12px auto;
 	width: 100%;
-	height: 90px;
+	min-height: 60px;
+	background: burlywood;
+	text-align: center;
+}
+
+#score {
+	padding: 12px 24px;
+	margin: 24px auto;
+	position: relative;
+	width: 80%;
+	background: forestgreen;
+	color: white;
+	border-radius: var(--border-min);
 }
 
 ul {
@@ -65,12 +77,16 @@ ul {
 }
 
 .answer {
-	background-color: forestgreen;
+	width: 80%;
+	background-color: dodgerblue;
+	color: white;
 	padding: 23px 43px;
-	margin: 0 24px;
+	margin: 0 auto;
 	transition: .3s linear;
 	border-radius: var(--border-min);
 	box-shadow: var(--shadow-min);
+	animation: fadeIn .6s;
+	/* opacity: 1; */
 }
 
 .answer:hover {
@@ -79,11 +95,11 @@ ul {
 }
 
 .correct {
-	background-color: green;
+	background-color: rgb(9, 88, 9);
 }
 
 .incorrect {
-	background-color: red;
+	background-color: rgb(202, 39, 39);
 }
 
 .noHover {
@@ -96,12 +112,15 @@ ul {
 	letter-spacing: 2px;
 	background-color: blueviolet;
 	color: #fff;
-	width: 100%;
+	width: 90%;
+	position: absolute;
+	left: 5%;
 	padding: 24px 50px;
 	margin: 24px auto;
 	text-align: center;
 	text-decoration: none;
 	border: 0px;
+	border-radius: var(--border-min);
 	cursor: pointer;
 	transition: all 0.3s 0s ease-in-out;
 }
@@ -114,4 +133,51 @@ ul {
 .finished {
 	background-color: rosybrown;
 	color: white;
+}
+
+#spinner {
+	border: 3px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 3px solid #3498db;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite; /* Safari */
+	animation: spin 1s linear infinite;
+	margin: auto;
+	position: absolute;
+	top: 45%;
+	left: 45%;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.fade-in {
+	animation: fadeIn 2s;
+	opacity: 1;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
 }

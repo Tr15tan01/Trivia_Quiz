@@ -1,20 +1,16 @@
 import { greenLogStyle, redLogStyle, blueLogStyle } from "./styles.js";
 
 
-window.start = () => {
-    const starterDiv = document.getElementsByClassName('startQuiz')[0];
-    // const spinner = document.getElementById('spinner')
-    starterDiv.style.display = 'none'
-    console.log('difficulty - start function')
-    fetcher()
+window.start = (difficulty = 'easy') => {
+    const divToHide = document.getElementsByClassName('startQuiz')[0];
+    divToHide.style.display = 'none'
+    console.log('difficulty - start function', difficulty)
+    fetcher(difficulty)
 }
 
-const fetcher = () => {
-    console.log('difficulty fetcher')
-    const spinner = document.getElementById('spinner')
-    const containerDiv = document.getElementsByClassName('container')[0]
-    containerDiv.style.display = 'none'
-    fetch(`https://opentdb.com/api.php?amount=3&category=28&type=multiple`)
+const fetcher = (difficulty) => {
+    console.log('difficulty fetcher', difficulty)
+    fetch(`https://opentdb.com/api.php?amount=3&category=28&difficulty=${difficulty}&type=multiple`)
         .then(response => response.json())
         .then(data => {
             //quesion number
@@ -22,15 +18,14 @@ const fetcher = () => {
             let score = 0;
             let selected = false;
             const nextButton = document.getElementById('nextButton')
-            containerDiv.style.display = 'block'
-            spinner.style.display = 'none'
+
             const finishedDiv = document.getElementById('finished')
-            // const containerDiv = document.getElementsByClassName('container')[0]
+            const containerDiv = document.getElementsByClassName('container')[0]
 
 
             //score display
             const scoreDisplay = document.getElementById('score')
-            scoreDisplay.textContent = `Your score is: ${score}`;
+            scoreDisplay.textContent = score;
 
             function shuffleArray(array) {
                 console.log('array shuffled')
@@ -65,7 +60,7 @@ const fetcher = () => {
                             e.target.classList.toggle('correct')
                             score = score + 1;
                             // console.log(score, 'score')
-                            scoreDisplay.textContent = `Your score is: ${score}`;
+                            scoreDisplay.textContent = score;
                         } else {
                             // console.log('fuck')
                             e.target.classList.toggle('incorrect')
@@ -111,7 +106,7 @@ const fetcher = () => {
                     const finalScore = document.getElementById('finalScore')
                     finishedDiv.style.display = 'block';
                     containerDiv.style.display = 'none';
-                    finalScore.textContent = `Your score is: ${score}`;
+                    finalScore.textContent = score;
                     console.log('%cfinalScore', blueLogStyle, score)
                 }
 
@@ -121,31 +116,15 @@ const fetcher = () => {
 
             nextButton.addEventListener('click', nextQuestion)
 
-            // const nextLevel = () => {
-            //     console.log('nextleven function')
+            const nextLevel = () => {
+                console.log('nextleven function')
+                difficulty = 'medium'
+                start('medium')
+                finishedDiv.style.display = 'none'
+                containerDiv.style.display = 'block'
+            }
 
-            //     fetcher()
-            //     finishedDiv.style.display = 'none'
-            //     containerDiv.style.display = 'block'
-            // }
-
-            // const nextLevelButton = document.getElementById('nextLevelButton')
-            // nextLevelButton.addEventListener('click', nextLevel)
+            const nextLevelButton = document.getElementById('nextLevelButton')
+            nextLevelButton.addEventListener('click', nextLevel)
         })
 }
-
-
-const nextLevel = () => {
-    // const finishedDiv = document.getElementById('finished')
-    // const containerDiv = document.getElementsByClassName('container')[0]
-
-    // console.log('nextleven function')
-
-    // fetcher()
-    // finishedDiv.style.display = 'none'
-    // containerDiv.style.display = 'block'
-    window.location.reload()
-}
-
-const nextLevelButton = document.getElementById('nextLevelButton')
-nextLevelButton.addEventListener('click', nextLevel)
