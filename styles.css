@@ -13,6 +13,8 @@ body {
 
 .container {
 	color: gray;
+	max-width: 80%;
+	margin: auto;
 }
 
 .startQuiz {
@@ -25,7 +27,8 @@ body {
 	text-align: center;
 }
 
-#starter {
+#starter,
+#nextLevelButton  {
 	margin: 0 auto;
 	position: relative;
 	top: 50%;
@@ -41,7 +44,7 @@ body {
 }
 
 #starter:hover {
-	background: chartreuse;
+	background: rgb(73, 139, 201);
 	cursor: pointer;
 }
 
@@ -118,15 +121,14 @@ ul {
 	pointer-events: none;
 }
 
-#nextButton,
-#nextLevelButton {
+#nextButton {
 	font-size: 16px;
 	letter-spacing: 2px;
 	background-color: #1ea757;
 	color: #fff;
-	width: 90%;
-	position: absolute;
-	left: 5%;
+	width: 80%;
+	position: relative;
+	left: 10%;
 	padding: 24px 50px;
 	margin: 24px auto;
 	text-align: center;
@@ -188,3 +190,10 @@ ul {
 		opacity: 1;
 	}
 }
+
+
+@media only screen and (max-width: 810px) {
+	.container {
+		max-width: 100%;
+	}
+  }
