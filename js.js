@@ -28,7 +28,12 @@ const fetcher = () => {
 
             //score display
             const scoreDisplay = document.getElementById('score')
-            scoreDisplay.textContent = `Your score is: ${score}`;
+            scoreDisplay.textContent = score;
+            //question number display assign
+            const questionNumber = document.getElementById('question-number');
+            //total questions
+            const totalQuestions = document.getElementById('total-questions')
+
 
             const shuffleArray = (array) => {
                 for (let i = array.length - 1; i > 0; i--) {
@@ -38,6 +43,9 @@ const fetcher = () => {
             }
 
             const loadQuestion = () => {
+                //question number display
+                questionNumber.textContent = i + 1
+                totalQuestions.textContent = data.results.length
                 //question assign to element
                 const question = document.getElementById('question');
                 question.innerHTML = data.results[i].question
@@ -58,7 +66,7 @@ const fetcher = () => {
                             e.target.classList.toggle('correct')
                             score = score + 1;
 
-                            scoreDisplay.textContent = `Your score is: ${score}`;
+                            scoreDisplay.textContent = score;
                         } else {
                             // console.log('fuck')
                             e.target.classList.toggle('incorrect')
